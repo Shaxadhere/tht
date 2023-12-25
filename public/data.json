@@ -1,0 +1,83 @@
+[
+  {
+    "id": "chips_1",
+    "name": "Lays Salted",
+    "imageUrl": "/images/lays.jpg",
+    "drinks": [
+      {
+        "id": "drink_1",
+        "name": "Pepsi",
+        "imageUrl": "/images/pepsi.png"
+      }
+    ],
+    "chocolates": [
+      {
+        "id": "chocolates_3",
+        "name": "Cadbury",
+        "imageUrl": "/images/cadbury.jpg"
+      }
+    ]
+  },
+  {
+    "id": "chips_2",
+    "name": "Slims",
+    "imageUrl": "/images/slims.jpg",
+    "drinks": [
+      {
+        "id": "drink_1",
+        "name": "Pepsi",
+        "imageUrl": "/images/pepsi.png"
+      },
+      {
+        "id": "drink_2",
+        "name": "7Up",
+        "imageUrl": "/images/7up.jpg"
+      }
+    ],
+    "chocolates": [
+      {
+        "id": "chocolates_1",
+        "name": "Perk",
+        "imageUrl": "/images/perk.jpg"
+      }
+    ]
+  },
+  {
+    "id": "chips_3",
+    "name": "Potatoe Sticks",
+    "imageUrl": "/images/potato-sticks.png",
+    "drinks": [
+      {
+        "id": "drink_1",
+        "name": "Pepsi",
+        "imageUrl": "/images/pepsi.png"
+      }
+    ],
+    "chocolates": [
+      {
+        "id": "chocolates_2",
+        "name": "Now",
+        "imageUrl": "/images/now.jpg"
+      }
+    ]
+  },
+  {
+    "id": "chips_4",
+    "name": "Slanty",
+    "imageUrl": "/images/slanty.jpg",
+    "drinks": [
+      {
+        "id": "drink_3",
+        "name": "Miranda",
+        "imageUrl": "/images/miranda.jpg"
+      }
+    ],
+    "chocolates": [
+      {
+        "id": "chocolates_3",
+        "name": "Cadbury",
+        "imageUrl": "/images/cadbury.jpg"
+      }
+    ]
+  }
+]

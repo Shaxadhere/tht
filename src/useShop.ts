@@ -1,0 +1,50 @@
+import { useEffect, useMemo, useState } from "react";
+import { fetchUtil } from "./utils/api";
+import { IProduct } from "./types";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "./redux/slices/cartSlice";
+import { moveTab } from "./utils/tabUtil";
+
+const useShop = (changeTab: any) => {
+  const dispatch = useDispatch();
+  const cart = useSelector((state: any) => state?.cart);
+  const [products, setProducts] = useState<IProduct[]>([]);
+
+  const chocolates = useMemo(() => {
+    return (
+      products.find((product) => product?.id === cart.chips)?.chocolates || []
+    );
+  }, [cart.chips]);
+
+  const drinks = useMemo(() => {
+    return products.find((product) => product?.id === cart.chips)?.drinks || [];
+  }, [cart.chips]);
+
+  useEffect(() => {
+    fetchUtil({
+      url: "http://localhost:5173/data.json",
+      method: "GET",
+    })
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const addToCart = ({ id, type }: { id: string; type: string }) => {
+    dispatch(addItem({ id, type }));
+    moveTab(type, changeTab);
+  };
+
+  return {
+    products,
+    chocolates,
+    drinks,
+    addToCart,
+    cart,
+  };
+};
+
+export default useShop;
