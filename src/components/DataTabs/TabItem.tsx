@@ -1,16 +1,16 @@
-import React from "react";
-
 type Props = {
-  icon: React.ReactNode;
   label: string;
-  body?: React.ReactNode;
+  isActive?: boolean;
 };
 
-const TabItem = ({ icon, label }: Props) => {
+const TabItem = ({ label, isActive }: Props) => {
   return (
     <li className="me-2">
-      <div className="cursor-pointer inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300 group">
-        {icon}
+      <div
+        className={`cursor-pointer inline-flex items-center justify-center p-4 border-b-2 border-transparent rounded-t-lg  group ${
+          isActive && "border-b-2 border-blue-600 text-blue-600"
+        }`}
+      >
         {label}
       </div>
     </li>

@@ -18,9 +18,8 @@ const DataTabs = ({ tabs, activeTabId }: Props) => {
         {tabs.map((tab) => (
           <TabItem
             key={tab.id}
-            icon={tab.icon}
             label={tab.label}
-            body={tab.body}
+            isActive={tab.id === activeTabId}
           />
         ))}
       </ul>
