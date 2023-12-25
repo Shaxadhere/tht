@@ -23,7 +23,7 @@ const useShop = (changeTab: any) => {
 
   useEffect(() => {
     fetchUtil({
-      url: "http://localhost:5173/data.json",
+      url: "https://tht-shaxadhere.vercel.app/data.json",
       method: "GET",
     })
       .then((data) => {
