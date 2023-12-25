@@ -9,26 +9,26 @@ type Props = {
     body?: React.ReactNode;
   }[];
   activeTabId?: string;
-  onTabChange: (tabId: string) => void;
 };
 
-const DataTabs = ({ tabs, activeTabId, onTabChange }: Props) => {
+const DataTabs = ({ tabs, activeTabId }: Props) => {
   return (
     <div>
       <ul className="border-b border-gray-200 flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 max-w-xl justify-around m-auto mt-10">
         {tabs.map((tab) => (
           <TabItem
             key={tab.id}
-            id={tab.id}
             icon={tab.icon}
             label={tab.label}
             body={tab.body}
-            onTabChange={onTabChange}
           />
         ))}
       </ul>
 
-      <div className="mt-8 max-w-xl justify-around m-auto">
+      <div
+        className="mt-8 max-w-xl justify-around m-auto"
+        style={{ minHeight: "calc(100vh - 340px)" }}
+      >
         {tabs.find((tab) => tab.id === activeTabId)?.body}
       </div>
     </div>

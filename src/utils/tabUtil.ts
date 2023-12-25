@@ -8,6 +8,9 @@ export const moveTab = (type: string, changeTab: any) => {
     case PRODUCT_TYPES.DRINK:
       changeTab(PRODUCT_TYPES.CHOCOLATE);
       break;
+    case "reset":
+      changeTab(PRODUCT_TYPES.CHIPS);
+      break;
     default:
       break;
   }

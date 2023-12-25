@@ -1,14 +1,22 @@
-import { Provider } from "react-redux";
 import Listing from "../components/ComboDeal/Listing";
 import DataTabs from "../components/DataTabs";
 import useTabs from "../components/DataTabs/useTabs";
 import { PRODUCT_TYPES } from "../constants";
 import useShop from "../useShop";
-import { store } from "../redux/store";
 
 function ComboDeal() {
   const { activeTab, changeTab } = useTabs({ activeTabId: "chips" });
-  const { products, addToCart, chocolates, drinks, cart } = useShop(changeTab);
+  const {
+    products,
+    addToCart,
+    clearCart,
+    onBuy,
+    chocolates,
+    drinks,
+    cart,
+    orderPlaced,
+  } = useShop(changeTab);
+
   const tabs = [
     {
       id: PRODUCT_TYPES.CHIPS,
@@ -45,31 +53,46 @@ function ComboDeal() {
     },
   ];
 
-  const onTabChange = (tabId: string) => {
-    changeTab(tabId);
-  };
-
   return (
-    <Provider store={store}>
-      <DataTabs tabs={tabs} onTabChange={onTabChange} activeTabId={activeTab} />
-
-      <div className="inline-flex rounded-md shadow-sm max-w-xl w-                             " role="group">
-        <button
-          type="button"
-          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
-        >
-          Profile
-        </button>
-        <button
-          type="button"
-          className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
-        >
-          Messages
-        </button>
-      </div>
-
-      <p>{JSON.stringify(cart, null, 2)}</p>
-    </Provider>
+    <>
+      <DataTabs tabs={tabs} activeTabId={activeTab} />
+      {orderPlaced && (
+        <div className="mt-8 max-w-xl justify-around m-auto">
+          <div
+            className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50"
+            role="alert"
+          >
+            <span className="font-medium">Success!</span> Your order for the
+            combo deal was placed successfully
+          </div>
+        </div>
+      )}
+      {cart.chips && cart.drink && cart.chocolate && (
+        <div className="mt-8 max-w-xl justify-around m-auto">
+          <div
+            className="inline-flex rounded-md max-w-xl w-full gap-5"
+            role="group"
+          >
+            <button
+              type="button"
+              disabled={orderPlaced}
+              onClick={onBuy}
+              className="w-full px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700"
+            >
+              Buy Combo Deal
+            </button>
+            <button
+              type="button"
+              disabled={orderPlaced}
+              onClick={clearCart}
+              className="w-full px-4 py-2 text-sm font-medium text-gray-100 bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -2,10 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { fetchUtil } from "./utils/api";
 import { IProduct } from "./types";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "./redux/slices/cartSlice";
+import { addItem, emptyCart } from "./redux/slices/cartSlice";
 import { moveTab } from "./utils/tabUtil";
 
 const useShop = (changeTab: any) => {
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state: any) => state?.cart);
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -38,12 +39,28 @@ const useShop = (changeTab: any) => {
     moveTab(type, changeTab);
   };
 
+  const clearCart = () => {
+    dispatch(emptyCart());
+    moveTab("reset", changeTab);
+  };
+
+  const onBuy = () => {
+    setOrderPlaced(true);
+    clearCart();
+    setTimeout(() => {
+      setOrderPlaced(false);
+    }, 3000);
+  };
+
   return {
     products,
     chocolates,
     drinks,
-    addToCart,
     cart,
+    addToCart,
+    clearCart,
+    onBuy,
+    orderPlaced
   };
 };
 
